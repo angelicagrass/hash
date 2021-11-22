@@ -1,19 +1,17 @@
-// create hash function 8 bits
-function hash(str, table) {
-  var hash = 5381;
-  var i = str.length;
-  while (i) {
-    hash = (hash * 33) ^ str.charCodeAt(--i);
+export default class Hash {
+  constructor(string) {
+    this.string = string
+    this.max = 256
+    this.hash = this.hash()
   }
-  return hash >>> 0;
+
+hash() {
+  let hash = 0
+  for (let i = 1; i < this.string.length; i++) {
+    hash = hash + (this.string.charCodeAt(i) * i)
+  }
+  return hash % this.max
+  }
 }
 
-// create range function
-export function range(start, end) {
-  var result = [];
-  for (var i = start; i < end; i++) {
-    result.push(i);
-  }
-  return result;
-}
 

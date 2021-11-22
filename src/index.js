@@ -1,4 +1,7 @@
-import { range } from './hash/hash.js';
+import Hash from './hash/hash.js';
 
-let test = range(1, 10);
-console.log(test);
+let myHash = new Hash('hyvelost');
+console.log(myHash)
+
+// let test = range(1, 10);
+// console.log(test);
