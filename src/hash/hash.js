@@ -10,7 +10,6 @@ hash() {
   for (let i = 1; i < this.string.length; i++) {
     hash = hash + (this.string.charCodeAt(i) * i)
   }
-  console.log(hash % this.max)
   return hash % this.max
   }
 }

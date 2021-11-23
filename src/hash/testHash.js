@@ -1,28 +1,22 @@
 import Hash from './hash.js';
 
-const testObject = {}
-
-// test hash  -   hash.js
 export default function testHash() {
+    let errors = 0
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 1000; i++) {
         const randomString = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-        console.log(randomString)
+
         const hash = new Hash(randomString);
-        console.log(hash.hashValue)
-    
-        testObject[randomString] = hash.hashValue;
-
-
-
-
-
-
+        //testObject[randomString] = hash.hashValue;
+        if(hash.hashValue < 0 || hash.hashValue > 256) {
+            errors++
+        }
     }
-    
 
-    console.log(testObject)
-
-    //return randomString
+    if (errors === 0) { 
+        console.log('test passed, all the hashvalues is between 0-256')
+    } else {
+        console.log('test failed, there are ' + errors + ' hashvalues that is not between 0-256')
+    }
 }
 
