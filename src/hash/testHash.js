@@ -18,30 +18,56 @@ export function testHash() {
     }
 }
 
+function randomNr(str) {
+    return Math.floor(Math.random() * (str.length - 1))
+}
+
 export function testSmallVariations() {
     const strings = []
     const hashValues = []
     
-
     let str = 'hello, this is my teststring that tests small variations!'
     
+    for (let i = 0; i < 1000; i++) {
+        let randomNumber = randomNr(str)
+        let secondRandomNumber = randomNr(str)
 
-    for (let i = 0; i < 10; i++) {
-        let randomNumber = Math.floor(Math.random() * (str.length - 1))
-
-        let testString = str.substring(Math.random().toString(36).substring(2, 15)) + str.substring(randomNumber, str.length);
-
-        
-        testString = str.split('').map((char, index) => {
+        let testString = str.split('').map((char, index) => {
             if (index === randomNumber) {
                 return char.toUpperCase()
             } else {
                 return char
             }
         }).join('')
-        console.log(testString)
-        //const hash = new Hash(testString);
-        //console.log(hash.hashValue)
+
+        testString = testString.slice(0, randomNumber + 1) + 's' + testString.slice(randomNumber + 2, testString.length);
+        testString = testString.slice(0, secondRandomNumber + 1) + 'q' + testString.slice(secondRandomNumber + 2, testString.length);
+        
+        
+        let hash = new Hash(testString)
+        let value = hash.hashValue
+
+        let stringAndHash = `${testString}: ${value}`
+
+        if (!strings.includes(stringAndHash)) {
+            strings.push(stringAndHash)
+            hashValues.push(value)
+        }
     }
+    countMatchingHashValues(hashValues)
+    console.log(strings.length)
 }
+
+function countMatchingHashValues(hashValues) {
+    let count = {}
+    for (let i = 0; i < hashValues.length; i++) {
+        count[hashValues[i]] = (count[hashValues[i]] || 0) + 1
+    }
+    console.log(count)
+
+    // write to file
+}
+
+
+
 
