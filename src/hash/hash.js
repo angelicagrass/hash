@@ -2,7 +2,7 @@ export default class Hash {
   constructor(string) {
     this.string = string
     this.max = 256
-    this.hash = this.hash()
+    this.hashValue = this.hash()
   }
 
 hash() {
@@ -10,6 +10,7 @@ hash() {
   for (let i = 1; i < this.string.length; i++) {
     hash = hash + (this.string.charCodeAt(i) * i)
   }
+  console.log(hash % this.max)
   return hash % this.max
   }
 }
