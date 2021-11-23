@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/angelicagrass/hash/issues"
   },
-  "homepage": "https://github.com/angelicagrass/hash#readme"
+  "homepage": "https://github.com/angelicagrass/hash#readme",
+  "dependencies": {
+    "snowpack": "^3.8.8"
+  }
 }
